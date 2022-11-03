@@ -19,5 +19,4 @@ class Courier:
         print(f"Курьер доставил {self.__request.amount} из {self.__request.destination}")
 
     def cancel(self):
-        if self.__request.amount <= self.departure.__items[self.__request.product]:
-            self.departure.add(name=self.__request.product, amount=self.__request.amount)
+        self.departure.add(name=self.__request.product, amount=self.__request.amount)

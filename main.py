@@ -42,14 +42,21 @@ def main():
         courier = Courier(request=request, storages=storages)
         try:
             courier.move()
-        except NotEnoughSpaceError as error:
-            print(error.massage)
-            courier.cancel()
-            continue
-        except NotEnoughProductError or WrongProductError or InvalidRequestError as error:
-            print(error.massage)
-            continue
-
+        # except NotEnoughSpaceError as error:
+        #     print(error.massage)
+        #     courier.cancel()
+        #     continue
+        # except NotEnoughProductError or WrongProductError or InvalidRequestError as error:
+        #     print(error.massage)
+        #     continue
+        except BaseError as error:
+            if error == NotEnoughSpaceError:
+                print(error.massage)
+                courier.cancel()
+                continue
+            else:
+                print(error.massage)
+                continue
 
 if __name__ == '__main__':
     main()
