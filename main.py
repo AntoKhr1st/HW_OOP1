@@ -1,6 +1,6 @@
 from Shop import Shop
 from courier import Courier
-from errors import BaseError
+from errors import BaseError, NotEnoughProductError, WrongProductError, NotEnoughSpaceError, InvalidRequestError
 from request import Request
 from store import Store
 
@@ -42,9 +42,12 @@ def main():
         courier = Courier(request=request, storages=storages)
         try:
             courier.move()
-        except BaseError as error:
+        except NotEnoughSpaceError as error:
             print(error.massage)
             courier.cancel()
+            continue
+        except NotEnoughProductError or WrongProductError or InvalidRequestError as error:
+            print(error.massage)
             continue
 
 

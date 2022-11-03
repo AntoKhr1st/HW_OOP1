@@ -20,3 +20,7 @@ class InvalidRequestError(BaseError):
 
 class UnknownStorageError(BaseError):
     massage = 'неизвестный склад'
+
+
+class WrongProductError(BaseError):
+    massage = 'неизвестный продукт'

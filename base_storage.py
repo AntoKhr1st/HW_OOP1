@@ -1,4 +1,4 @@
-from errors import NotEnoughSpaceError, NotEnoughProductError
+from errors import NotEnoughSpaceError, NotEnoughProductError, WrongProductError
 
 
 class BaseStorage :
@@ -12,8 +12,10 @@ class BaseStorage :
         self.__items[name] = self.__items.get(name, 0) + amount #не уверен что сработает (затестить)
 
     def remove(self,name: str, amount: int) -> None:
-        if name not in self.__items or amount > self.__items[name]:
+        if amount > self.__items[name]:
             raise NotEnoughProductError
+        if name not in self.__items:
+            raise WrongProductError
         self.__items[name] -= amount
         if self.__items[name] == 0:
             self.__items.pop(name)
