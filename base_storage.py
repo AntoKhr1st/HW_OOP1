@@ -1,7 +1,8 @@
+from abstract_storage import AbstractStorage
 from errors import NotEnoughSpaceError, NotEnoughProductError, WrongProductError
 
 
-class BaseStorage :
+class BaseStorage (AbstractStorage) :
     def __init__(self, items, capacity:int):
         self.__items = items
         self.__capacity = capacity
